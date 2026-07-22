@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8F9FA;
+  --foreground: #0F172A;
+  --bg-card-color: #FFFFFF;
+  --text-secondary-color: #64748B;
+  --border-color: #E2E8F0;
+  --input-bg-color: #F8F9FA;
+}
+
+.dark {
+  --background: #090D16;
+  --foreground: #F8FAFC;
+  --bg-card-color: #101726;
+  --text-secondary-color: #94A3B8;
+  --border-color: #1E293B;
+  --input-bg-color: #1A2333;
+}
+
+@theme {
+  --color-brand-primary: #00B060;
+  --color-brand-primary-hover: #009652;
+  --color-brand-primary-light: rgba(0, 176, 96, 0.08);
+  --color-brand-primary-light-hover: rgba(0, 176, 96, 0.15);
+  
+  --color-bg-base: var(--background);
+  --color-bg-card: var(--bg-card-color);
+  --color-text-main: var(--foreground);
+  --color-text-secondary: var(--text-secondary-color);
+  --color-border-subtle: var(--border-color);
+  --color-input-bg: var(--input-bg-color);
+  
+  --radius-3xl: 1.5rem;
+  --radius-2xl: 1rem;
+  --radius-xl: 0.75rem;
+  
+  --shadow-premium: 0 4px 20px -2px rgba(0, 0, 0, 0.01), 0 2px 8px -1px rgba(0, 0, 0, 0.005);
+  --shadow-premium-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.02), 0 4px 12px -2px rgba(0, 0, 0, 0.01);
+
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Custom loading pulse scale animation */
+  @keyframes scale-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.97); opacity: 0.7; }
+  }
+  --animate-scale-pulse: scale-pulse 1.8s ease-in-out infinite;
+
+  /* One-shot pop-in for the SuccessModal check icon */
+  @keyframes success-pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  --animate-success-pop: success-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/*
+  Printing a single element buried inside the scrollable app shell doesn't work with
+  just `visibility: hidden` on everything else: the shell's `overflow-hidden`/`overflow-y-auto`
+  ancestors still clip the printable node to their own box, even once it's `position: absolute`.
+  Neutralize those ancestor constraints during print so the printable area can render full-size.
+*/
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  body {
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  header, aside, nav, .no-print {
+    display: none !important;
+  }
+  .app-shell,
+  .app-shell-col,
+  .app-shell-main,
+  main {
+    position: static !important;
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: white !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
