@@ -218,65 +218,24 @@ export default function SuperAdminLoginPage() {
 
         </div>
 
-        {/* Right Column: Hero Visual Graphic Banner */}
-        <div className="hidden md:flex md:w-1/2 m-3 rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#0D1424] via-[#101A2F] to-[#0A0E18] border border-[#1E293B] text-white p-8 flex-col justify-between relative overflow-hidden shadow-lg">
+        {/* Right Column: Clean Background Image with Title & Description Only */}
+        <div className="hidden md:flex md:w-1/2 m-3 rounded-2xl md:rounded-3xl bg-slate-950 text-white p-8 flex-col justify-end relative overflow-hidden shadow-xl border border-slate-800">
           
-          {/* Tech Radial Mesh Overlay */}
-          <div
-            className="absolute inset-0 opacity-40 pointer-events-none"
-            style={{
-              background:
-                'radial-gradient(circle at 10% 10%, rgba(0,176,96,0.25), transparent 45%), radial-gradient(circle at 90% 90%, rgba(30,41,59,0.5), transparent 60%)',
-            }}
+          {/* Background Image from public */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-50" 
+            style={{ backgroundImage: "url('/Background Flux.png')" }}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-          {/* Top Banner Tagline */}
-          <div className="relative z-10 space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300 shadow-sm">
-              <ShieldAlert className="w-3.5 h-3.5 text-amber-500" />
-              <span>Restreint à l'Exploitation SaaS</span>
-            </div>
-            <h2 className="text-2xl lg:text-3xl font-black leading-tight tracking-tight">
-              Console Globale d'Administration
+          {/* Title & Description */}
+          <div className="relative z-10 space-y-2 text-left">
+            <h2 className="text-2xl lg:text-3xl font-black leading-tight tracking-tight text-white font-sans">
+              Supervision Globale de la Plateforme
             </h2>
-            <p className="text-xs lg:text-sm text-slate-400 leading-relaxed max-w-sm">
-              Supervision du parc d'organisations, gestion des abonnements et monitoring système.
+            <p className="text-xs lg:text-sm text-slate-300 leading-relaxed max-w-sm font-sans">
+              Console d'administration réservée à l'opérateur SaaS : gestion des organisations, abonnements et traçabilité globale.
             </p>
-          </div>
-
-          {/* Floating Glassmorphism Dashboard Preview Card */}
-          <div className="relative z-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 space-y-3 shadow-2xl my-auto">
-            <div className="flex items-center justify-between text-xs font-bold border-b border-white/10 pb-2">
-              <span className="flex items-center gap-1.5">
-                <Activity className="w-4 h-4 text-brand-primary" />
-                Métrique Multi-Tenants
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-brand-primary/20 text-brand-primary text-[10px]">Actif</span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-black/30 rounded-xl p-2.5 space-y-0.5">
-                <p className="text-[10px] text-slate-400 uppercase font-semibold">Organisations</p>
-                <p className="text-lg font-black text-white">12 Imprimeries</p>
-              </div>
-              <div className="bg-black/30 rounded-xl p-2.5 space-y-0.5">
-                <p className="text-[10px] text-slate-400 uppercase font-semibold">Revenu SaaS Mensuel</p>
-                <p className="text-lg font-black text-brand-primary">{formatFCFA(3850000)}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary" />
-                Base Supabase RLS & Auth Synchronisées
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom Security Badge */}
-          <div className="relative z-10 flex items-center justify-between text-[11px] text-slate-500 border-t border-white/10 pt-3">
-            <span>Audit Trail Active</span>
-            <span>v1.0.4 Production</span>
           </div>
 
         </div>

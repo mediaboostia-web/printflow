@@ -3,7 +3,7 @@
  * Supports FCFA (default), Euro (€), US Dollar ($), Dirham Marocain (MAD), Franc Guinéen (GNF).
  */
 
-export type CurrencyCode = 'FCFA' | 'EUR' | 'USD' | 'MAD' | 'GNF';
+export type CurrencyCode = 'FCFA' | 'XAF' | 'EUR' | 'USD' | 'MAD' | 'GNF';
 
 export interface CurrencyConfig {
   code: CurrencyCode;
@@ -14,7 +14,8 @@ export interface CurrencyConfig {
 }
 
 export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
-  FCFA: { code: 'FCFA', label: 'FCFA (Afrique)', symbol: 'FCFA', rateToFcfa: 1, position: 'suffix' },
+  FCFA: { code: 'FCFA', label: 'FCFA / XAF', symbol: 'FCFA', rateToFcfa: 1, position: 'suffix' },
+  XAF: { code: 'XAF', label: 'XAF (FCFA)', symbol: 'XAF', rateToFcfa: 1, position: 'suffix' },
   EUR: { code: 'EUR', label: 'Euro (€)', symbol: '€', rateToFcfa: 0.001524, position: 'suffix' },
   USD: { code: 'USD', label: 'Dollar ($)', symbol: '$', rateToFcfa: 0.00165, position: 'prefix' },
   MAD: { code: 'MAD', label: 'Dirham (MAD)', symbol: 'MAD', rateToFcfa: 0.0165, position: 'suffix' },
@@ -38,7 +39,7 @@ export function formatFCFA(amountInFcfa: number, forceCurrency?: CurrencyCode): 
   const config = CURRENCIES[code] || CURRENCIES.FCFA;
   const converted = (amountInFcfa || 0) * config.rateToFcfa;
 
-  const decimals = code === 'FCFA' || code === 'GNF' ? 0 : 2;
+  const decimals = code === 'FCFA' || code === 'XAF' || code === 'GNF' ? 0 : 2;
   const formatted = new Intl.NumberFormat('fr-FR', {
     style: 'decimal',
     maximumFractionDigits: decimals,

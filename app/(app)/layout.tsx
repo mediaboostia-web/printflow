@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/layout/Sidebar';
 import Header from '@/components/layout/Header';
+import BottomNav from '@/components/layout/BottomNav';
 import { useAppStore } from '@/lib/state/store';
 
 export default function AppLayout({
@@ -102,10 +103,13 @@ export default function AppLayout({
         <Header />
 
         {/* Scrollable page content */}
-        <main className="app-shell-main flex-1 overflow-y-auto px-6 py-6 scroll-smooth bg-bg-base dark:bg-[#0B0F19] transition-colors duration-300">
+        <main className="app-shell-main flex-1 overflow-y-auto px-4 sm:px-6 py-6 pb-24 md:pb-6 scroll-smooth bg-bg-base dark:bg-[#0B0F19] transition-colors duration-300">
           {children}
         </main>
       </div>
+
+      {/* Mobile Bottom Navigation Bar & Bottom Sheet Drawer */}
+      <BottomNav />
 
       {/* WhatsApp Support Upgrade Popup Modal */}
       {showWhatsAppPopup && (

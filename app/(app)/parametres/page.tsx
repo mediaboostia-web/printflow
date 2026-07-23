@@ -253,51 +253,53 @@ export default function ParametresPage() {
       </div>
 
       {/* Sub tabs navigation */}
-      <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-full border border-border-subtle w-full sm:w-auto self-start inline-flex">
-        <button
-          onClick={() => setActiveSubTab('org')}
-          className={`px-5 py-2 rounded-full text-xs font-bold transition flex items-center gap-1.5 ${
-            activeSubTab === 'org' 
-              ? 'bg-bg-card text-text-main shadow-sm' 
-              : 'text-text-secondary hover:text-text-main'
-          }`}
-        >
-          <Building className="w-4 h-4" />
-          <span>Fiche Organisation</span>
-        </button>
-        <button
-          onClick={() => setActiveSubTab('taxes')}
-          className={`px-5 py-2 rounded-full text-xs font-bold transition flex items-center gap-1.5 ${
-            activeSubTab === 'taxes' 
-              ? 'bg-bg-card text-text-main shadow-sm' 
-              : 'text-text-secondary hover:text-text-main'
-          }`}
-        >
-          <Percent className="w-4 h-4" />
-          <span>Taxes (TVA)</span>
-        </button>
-        <button
-          onClick={() => setActiveSubTab('shop')}
-          className={`px-5 py-2 rounded-full text-xs font-bold transition flex items-center gap-1.5 ${
-            activeSubTab === 'shop' 
-              ? 'bg-bg-card text-text-main shadow-sm' 
-              : 'text-text-secondary hover:text-text-main'
-          }`}
-        >
-          <Printer className="w-4 h-4" />
-          <span>Atelier & Formats</span>
-        </button>
-        <button
-          onClick={() => setActiveSubTab('utilisateurs')}
-          className={`px-5 py-2 rounded-full text-xs font-bold transition flex items-center gap-1.5 ${
-            activeSubTab === 'utilisateurs' 
-              ? 'bg-bg-card text-text-main shadow-sm' 
-              : 'text-text-secondary hover:text-text-main'
-          }`}
-        >
-          <Users className="w-4 h-4" />
-          <span>Collaborateurs</span>
-        </button>
+      <div className="overflow-x-auto no-scrollbar max-w-full pb-1">
+        <div className="inline-flex bg-slate-100 dark:bg-slate-800 p-1 rounded-2xl sm:rounded-full border border-border-subtle min-w-max">
+          <button
+            onClick={() => setActiveSubTab('org')}
+            className={`px-4 sm:px-5 py-2 rounded-xl sm:rounded-full text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${
+              activeSubTab === 'org' 
+                ? 'bg-bg-card text-text-main shadow-sm' 
+                : 'text-text-secondary hover:text-text-main'
+            }`}
+          >
+            <Building className="w-4 h-4" />
+            <span>Fiche Organisation</span>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('taxes')}
+            className={`px-4 sm:px-5 py-2 rounded-xl sm:rounded-full text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${
+              activeSubTab === 'taxes' 
+                ? 'bg-bg-card text-text-main shadow-sm' 
+                : 'text-text-secondary hover:text-text-main'
+            }`}
+          >
+            <Percent className="w-4 h-4" />
+            <span>Taxes (TVA)</span>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('shop')}
+            className={`px-4 sm:px-5 py-2 rounded-xl sm:rounded-full text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${
+              activeSubTab === 'shop' 
+                ? 'bg-bg-card text-text-main shadow-sm' 
+                : 'text-text-secondary hover:text-text-main'
+            }`}
+          >
+            <Printer className="w-4 h-4" />
+            <span>Atelier & Formats</span>
+          </button>
+          <button
+            onClick={() => setActiveSubTab('utilisateurs')}
+            className={`px-4 sm:px-5 py-2 rounded-xl sm:rounded-full text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${
+              activeSubTab === 'utilisateurs' 
+                ? 'bg-bg-card text-text-main shadow-sm' 
+                : 'text-text-secondary hover:text-text-main'
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            <span>Collaborateurs</span>
+          </button>
+        </div>
       </div>
 
       {saveSuccess && (

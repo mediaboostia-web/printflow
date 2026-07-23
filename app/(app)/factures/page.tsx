@@ -473,14 +473,14 @@ export default function FacturesPage() {
                             <span className={accentText}>{activeInvoice.totalFcfa.toLocaleString()} FCFA</span>
                           </div>
 
-                          {/* Payment amounts */}
+                          {/* Payment amounts & deposit deduction */}
                           <div className="border-t border-dashed border-slate-200 pt-1.5 space-y-1 text-[11px] text-slate-500">
                             <div className="flex justify-between">
-                              <span>Montant Versé :</span>
+                              <span>Acompte / Versé :</span>
                               <span className="text-slate-800 font-bold">{activeInvoice.amountPaidFcfa.toLocaleString()} FCFA</span>
                             </div>
-                            <div className="flex justify-between text-rose-600 font-bold">
-                              <span>Solde restant :</span>
+                            <div className="flex justify-between text-rose-600 font-bold text-xs">
+                              <span>Solde Dû (Reste à payer) :</span>
                               <span>{(activeInvoice.totalFcfa - activeInvoice.amountPaidFcfa).toLocaleString()} FCFA</span>
                             </div>
                           </div>

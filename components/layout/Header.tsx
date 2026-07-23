@@ -174,7 +174,8 @@ export default function Header() {
           <Dropdown
             value={activeCurrency}
             options={[
-              { value: 'FCFA', label: 'FCFA (XOF)' },
+              { value: 'FCFA', label: 'FCFA / XAF' },
+              { value: 'XAF', label: 'XAF (FCFA)' },
               { value: 'EUR', label: 'EUR (€)' },
               { value: 'USD', label: 'USD ($)' },
               { value: 'MAD', label: 'MAD (Dirham)' },

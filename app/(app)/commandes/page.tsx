@@ -15,7 +15,8 @@ import {
   FileText,
   AlertCircle,
   Download,
-  Eye
+  Eye,
+  Lock
 } from 'lucide-react';
 import { useAppStore } from '@/lib/state/store';
 import { formatFCFA } from '@/lib/utils/money';
@@ -363,20 +364,29 @@ export default function CommandesPage() {
                             >
                               <Eye className="w-4 h-4" />
                             </button>
-                            <button
-                              onClick={() => openFormModal(po)}
-                              className="p-1.5 rounded-lg text-text-secondary hover:text-brand-primary hover:bg-brand-primary/10 transition"
-                              title="Modifier"
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => openDeleteConfirm(po)}
-                              className="p-1.5 rounded-lg text-text-secondary hover:text-rose-600 hover:bg-rose-500/10 transition"
-                              title="Supprimer"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                            {po.status === 'termine' ? (
+                              <span className="p-1.5 rounded-lg text-slate-400 bg-slate-100 dark:bg-slate-800 border border-border-subtle cursor-not-allowed flex items-center gap-1 text-[11px] font-semibold" title="Commande terminée & livrée : Modification verrouillée">
+                                <Lock className="w-3.5 h-3.5" />
+                                Verrouillée
+                              </span>
+                            ) : (
+                              <>
+                                <button
+                                  onClick={() => openFormModal(po)}
+                                  className="p-1.5 rounded-lg text-text-secondary hover:text-brand-primary hover:bg-brand-primary/10 transition"
+                                  title="Modifier"
+                                >
+                                  <Edit2 className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => openDeleteConfirm(po)}
+                                  className="p-1.5 rounded-lg text-text-secondary hover:text-rose-600 hover:bg-rose-500/10 transition"
+                                  title="Supprimer"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </>
+                            )}
                           </div>
                         </td>
                       </tr>

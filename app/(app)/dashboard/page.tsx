@@ -872,7 +872,7 @@ export default function Dashboard() {
                             </div>
                           </td>
                           <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-text-secondary text-xs font-medium">
-                            Amadou Sow
+                            {quote.createdBy || currentProfile?.fullName || 'Commercial'}
                             <span className="block text-[10px] text-text-secondary">Commercial</span>
                           </td>
                           {role !== 'chef_atelier' && (
