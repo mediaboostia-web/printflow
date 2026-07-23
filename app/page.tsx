@@ -126,135 +126,142 @@ export default function LandingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSoftware) }}
       />
 
-      {/* Main Outer Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-20">
-        
-        {/* Top Header Navbar Card */}
-        <header className="bg-bg-card border border-border-subtle rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-xs sticky top-4 z-50">
-          <div className="flex items-center gap-3">
-            <img src="/Favicon_PrintFlow.png" alt="Logo Print_Flow" className="w-8 h-8 object-contain rounded-xl shrink-0" />
-            <span className="text-xl font-extrabold tracking-tight text-text-main font-sans">
-              Print<span className="text-brand-primary">_Flow</span>
-            </span>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-8 text-xs font-bold text-text-secondary font-sans" aria-label="Navigation principale">
-            <a href="#comment-ca-marche" className="hover:text-brand-primary transition">Comment ça marche</a>
-            <a href="#solutions" className="hover:text-brand-primary transition">Sérénité Atelier</a>
-            <a href="#defis-solution" className="hover:text-brand-primary transition">Défis & Solutions</a>
-            <a href="#temoignages" className="hover:text-brand-primary transition">Témoignages</a>
-            <a href="#tarifs" className="hover:text-brand-primary transition">Tarifs</a>
-            <a href="#faq" className="hover:text-brand-primary transition">FAQ</a>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            {isAuthenticated ? (
-              <Link
-                href="/dashboard"
-                className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-xl transition shadow-xs flex items-center gap-2 font-sans"
-              >
-                <span>Mon Espace</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="px-4 py-2 text-xs font-bold text-text-main hover:text-brand-primary transition font-sans"
-                >
-                  Se connecter
-                </Link>
-                <Link
-                  href="/login"
-                  className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-full transition shadow-xs font-sans hover:scale-[1.03]"
-                >
-                  Démarrer l'essai
-                </Link>
-              </>
-            )}
-          </div>
-        </header>
-
-        {/* HERO SECTION (WITH AMBIENT TOP GRADIENT & SINGLE CTA) */}
-        <section className="pt-6 pb-8 text-center space-y-8 bg-gradient-to-b from-brand-primary/5 via-transparent to-transparent -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 rounded-b-3xl" aria-label="Présentation Print_Flow">
+      {/* FULL WIDTH HERO + NAVBAR WRAPPER (COUVRE TOUTE LA LARGEUR DE L'ÉCRAN HAUTEUR COMPLÈTE) */}
+      <div className="w-full bg-gradient-to-b from-emerald-100/60 via-emerald-50/20 to-transparent dark:from-emerald-950/40 dark:via-slate-900/30 dark:to-transparent border-b border-border-subtle/50 pb-16 pt-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
-          {/* Centered Top Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-800 dark:text-emerald-300 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-brand-primary animate-pulse" />
-            <span>Essai gratuit de 7 jours pour votre imprimerie</span>
-          </div>
+          {/* Top Header Navbar Card */}
+          <header className="bg-bg-card border border-border-subtle rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-xs sticky top-4 z-50">
+            <div className="flex items-center gap-3">
+              <img src="/Favicon_PrintFlow.png" alt="Logo Print_Flow" className="w-8 h-8 object-contain rounded-xl shrink-0" />
+              <span className="text-xl font-extrabold tracking-tight text-text-main font-sans">
+                Print<span className="text-brand-primary">_Flow</span>
+              </span>
+            </div>
 
-          {/* Centered H1 Headline */}
-          <div className="max-w-3xl mx-auto space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-main tracking-tight leading-[1.1] font-sans">
-              Centralisez Devis, BAT & Production en un Seul Endroit
-            </h1>
+            <nav className="hidden md:flex items-center gap-8 text-xs font-bold text-text-secondary font-sans" aria-label="Navigation principale">
+              <a href="#comment-ca-marche" className="hover:text-brand-primary transition">Comment ça marche</a>
+              <a href="#solutions" className="hover:text-brand-primary transition">Sérénité Atelier</a>
+              <a href="#defis-solution" className="hover:text-brand-primary transition">Défis & Solutions</a>
+              <a href="#temoignages" className="hover:text-brand-primary transition">Témoignages</a>
+              <a href="#tarifs" className="hover:text-brand-primary transition">Tarifs</a>
+              <a href="#faq" className="hover:text-brand-primary transition">FAQ</a>
+            </nav>
 
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto font-sans">
-              Le logiciel conçu spécifiquement pour les imprimeries et ateliers de reprographie en Afrique francophone.
-            </p>
-          </div>
+            <div className="flex items-center gap-3">
+              {isAuthenticated ? (
+                <Link
+                  href="/dashboard"
+                  className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-xl transition shadow-xs flex items-center gap-2 font-sans"
+                >
+                  <span>Mon Espace</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-4 py-2 text-xs font-bold text-text-main hover:text-brand-primary transition font-sans"
+                  >
+                    Se connecter
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-full transition shadow-xs font-sans hover:scale-[1.03]"
+                  >
+                    Démarrer l'essai
+                  </Link>
+                </>
+              )}
+            </div>
+          </header>
 
-          {/* Single Primary Action CTA */}
-          <div className="flex items-center justify-center pt-2">
-            <Link
-              href="/login"
-              className="px-8 py-4 bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-extrabold rounded-full transition shadow-lg flex items-center gap-2.5 font-sans hover:scale-[1.04]"
-            >
-              <span>Démarrer l'essai gratuit</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          {/* HERO SECTION */}
+          <section className="pt-4 pb-4 text-center space-y-8" aria-label="Présentation Print_Flow">
+            
+            {/* Centered Top Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-xs font-bold text-emerald-800 dark:text-emerald-300 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-brand-primary animate-pulse" />
+              <span>Essai gratuit de 7 jours pour votre imprimerie</span>
+            </div>
 
-          {/* SaaS Dashboard Frame Mockup */}
-          <div className="pt-6 max-w-5xl mx-auto">
-            <div className="bg-bg-card p-2.5 rounded-3xl border border-border-subtle shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-500">
-              <div className="bg-input-bg rounded-2xl overflow-hidden border border-border-subtle relative">
-                <div className="h-8 bg-slate-200/80 dark:bg-slate-800/80 px-4 flex items-center gap-2 border-b border-border-subtle">
-                  <div className="w-2.5 h-2.5 rounded-full bg-rose-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  <span className="text-[10px] font-bold text-text-secondary mx-auto">Print_Flow SaaS Dashboard — Supervision Atelier</span>
+            {/* Centered H1 Headline */}
+            <div className="max-w-3xl mx-auto space-y-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-main tracking-tight leading-[1.1] font-sans">
+                Centralisez Devis, BAT & Production en un Seul Endroit
+              </h1>
+
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto font-sans">
+                Le logiciel conçu spécifiquement pour les imprimeries et ateliers de reprographie en Afrique francophone.
+              </p>
+            </div>
+
+            {/* Single Primary Action CTA */}
+            <div className="flex items-center justify-center pt-2">
+              <Link
+                href="/login"
+                className="px-8 py-4 bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-extrabold rounded-full transition shadow-lg flex items-center gap-2.5 font-sans hover:scale-[1.04]"
+              >
+                <span>Démarrer l'essai gratuit</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* SaaS Dashboard Frame Mockup */}
+            <div className="pt-6 max-w-5xl mx-auto">
+              <div className="bg-bg-card p-2.5 rounded-3xl border border-border-subtle shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-500">
+                <div className="bg-input-bg rounded-2xl overflow-hidden border border-border-subtle relative">
+                  <div className="h-8 bg-slate-200/80 dark:bg-slate-800/80 px-4 flex items-center gap-2 border-b border-border-subtle">
+                    <div className="w-2.5 h-2.5 rounded-full bg-rose-400" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                    <span className="text-[10px] font-bold text-text-secondary mx-auto">Supervision d'Atelier — Dashboard Print_Flow</span>
+                  </div>
+                  <img
+                    src="/Capture d'écran Dashboard.png"
+                    alt="Aperçu Tableau de Bord Print_Flow"
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
-                <img
-                  src="/Capture d'écran Dashboard.png"
-                  alt="Aperçu Tableau de Bord Print_Flow"
-                  className="w-full h-auto object-cover"
-                />
               </div>
             </div>
-          </div>
 
-        </section>
+          </section>
 
-        {/* SECTION 1: COMMENT ÇA MARCHE (CONTRASTED DARK THEME CONTAINER) */}
-        <section id="comment-ca-marche" className="py-10 space-y-8 text-center bg-slate-900 text-white border border-slate-800 rounded-3xl p-6 sm:p-12 shadow-2xl" aria-label="Comment ça marche">
+        </div>
+      </div>
+
+      {/* Main Inner Container for remaining sections */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+
+        {/* SECTION 1: COMMENT ÇA MARCHE (RÉTRACTATION DU DEGRADÉ SOMBRE -> STYLE CLAIR HARMONISÉ EN FRANÇAIS) */}
+        <section id="comment-ca-marche" className="py-10 space-y-8 text-center bg-bg-card border border-border-subtle rounded-3xl p-6 sm:p-12 shadow-xs" aria-label="Comment ça marche">
           
           <div className="space-y-2 max-w-2xl mx-auto">
-            <span className="px-3.5 py-1 rounded-full bg-brand-primary/20 text-brand-primary text-[11px] font-extrabold inline-block font-sans border border-brand-primary/30">
-              How It Works
+            <span className="px-3.5 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-[11px] font-extrabold inline-block font-sans border border-brand-primary/20">
+              Comment ça marche
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-white font-sans">
+            <h2 className="text-2xl sm:text-4xl font-black text-text-main font-sans">
               De l'Inscription à la Rentabilité — Simplifié.
             </h2>
-            <p className="text-xs text-slate-400 max-w-lg mx-auto">
+            <p className="text-xs text-text-secondary max-w-lg mx-auto">
               Notre processus fluide vous aide à inscrire votre atelier, suivre la fabrication et encaisser vos factures sans aucune complexité.
             </p>
           </div>
 
-          {/* 4 Cards Layout matching Screenshot 1 */}
+          {/* 4 Cards Layout matching Screenshot 1 (Light mode cards) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch text-left pt-4">
             
             {/* Card 01 */}
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-md hover:scale-[1.03] transition duration-300 hover:shadow-2xl cursor-pointer">
+            <div className="bg-input-bg border border-border-subtle rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-xs hover:scale-[1.03] transition duration-300 hover:shadow-xl cursor-pointer">
               <div className="space-y-4">
-                <span className="text-4xl font-black text-slate-600 font-sans block">01</span>
-                <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 text-brand-primary flex items-center justify-center">
+                <span className="text-4xl font-black text-slate-300 dark:text-slate-700 font-sans block">01</span>
+                <div className="w-10 h-10 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center">
                   <UserCheck className="w-5 h-5" />
                 </div>
                 <div className="space-y-1.5">
-                  <h3 className="text-base font-bold text-white font-sans">Inscription en 3 clics</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  <h3 className="text-base font-bold text-text-main font-sans">Inscription en 3 clics</h3>
+                  <p className="text-xs text-text-secondary leading-relaxed font-sans">
                     Créez votre compte en quelques secondes, accédez à votre espace d'impression sans carte bancaire.
                   </p>
                 </div>
@@ -262,9 +269,9 @@ export default function LandingPage() {
             </div>
 
             {/* Card 02 (Featured Card - Middle highlighted card with header image) */}
-            <div className="bg-slate-950 border-2 border-brand-primary rounded-3xl p-5 flex flex-col justify-between space-y-4 shadow-xl hover:scale-[1.03] transition duration-300 hover:shadow-2xl cursor-pointer">
+            <div className="bg-bg-card border-2 border-brand-primary rounded-3xl p-5 flex flex-col justify-between space-y-4 shadow-md hover:scale-[1.03] transition duration-300 hover:shadow-2xl cursor-pointer">
               <div className="space-y-3">
-                <div className="rounded-2xl overflow-hidden border border-slate-800 aspect-16/9 bg-slate-900">
+                <div className="rounded-2xl overflow-hidden border border-border-subtle aspect-16/9 bg-slate-100">
                   <img
                     src="/Capture d'écran Dashboard1.png"
                     alt="Créez votre atelier & Partagez le lien"
@@ -275,8 +282,8 @@ export default function LandingPage() {
                   <Store className="w-4 h-4" />
                 </div>
                 <div className="space-y-1.5">
-                  <h3 className="text-base font-bold text-white font-sans">Créez & Partagez la Boutique</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  <h3 className="text-base font-bold text-text-main font-sans">Créez & Partagez la Boutique</h3>
+                  <p className="text-xs text-text-secondary leading-relaxed font-sans">
                     Configurez vos tarifs papiers et partagez le lien de votre vitrine web avec vos clients.
                   </p>
                 </div>
@@ -284,15 +291,15 @@ export default function LandingPage() {
             </div>
 
             {/* Card 03 */}
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-md hover:scale-[1.03] transition duration-300 hover:shadow-2xl cursor-pointer">
+            <div className="bg-input-bg border border-border-subtle rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-xs hover:scale-[1.03] transition duration-300 hover:shadow-xl cursor-pointer">
               <div className="space-y-4">
-                <span className="text-4xl font-black text-slate-600 font-sans block">03</span>
-                <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 text-brand-primary flex items-center justify-center">
+                <span className="text-4xl font-black text-slate-300 dark:text-slate-700 font-sans block">03</span>
+                <div className="w-10 h-10 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center">
                   <Workflow className="w-5 h-5" />
                 </div>
                 <div className="space-y-1.5">
-                  <h3 className="text-base font-bold text-white font-sans">Gérez & Suivez le Flux</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  <h3 className="text-base font-bold text-text-main font-sans">Gérez & Suivez le Flux</h3>
+                  <p className="text-xs text-text-secondary leading-relaxed font-sans">
                     Traitez vos demandes reçues en direct et suivez chaque dossier étape par étape (Calage, Impression, Façonnage).
                   </p>
                 </div>
@@ -300,15 +307,15 @@ export default function LandingPage() {
             </div>
 
             {/* Card 04 */}
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-md hover:scale-[1.03] transition duration-300 hover:shadow-2xl cursor-pointer">
+            <div className="bg-input-bg border border-border-subtle rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-xs hover:scale-[1.03] transition duration-300 hover:shadow-xl cursor-pointer">
               <div className="space-y-4">
-                <span className="text-4xl font-black text-slate-600 font-sans block">04</span>
-                <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 text-brand-primary flex items-center justify-center">
+                <span className="text-4xl font-black text-slate-300 dark:text-slate-700 font-sans block">04</span>
+                <div className="w-10 h-10 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center">
                   <Receipt className="w-5 h-5" />
                 </div>
                 <div className="space-y-1.5">
-                  <h3 className="text-base font-bold text-white font-sans">Facturez & Gérez vos Revenus</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  <h3 className="text-base font-bold text-text-main font-sans">Facturez & Gérez vos Revenus</h3>
+                  <p className="text-xs text-text-secondary leading-relaxed font-sans">
                     Enregistrez les acomptes, éditez les factures finales et suivez le Solde Dû en toute sérénité.
                   </p>
                 </div>
@@ -319,7 +326,7 @@ export default function LandingPage() {
 
         </section>
 
-        {/* SECTION 2: SÉRÉNITÉ RETROUVÉE AVEC PRINTFLOW (AMBIENT GREEN GRADIENT ACCENT BACKDROP) */}
+        {/* SECTION 2: SÉRÉNITÉ RETROUVÉE AVEC PRINTFLOW (100% FRANÇAIS) */}
         <section id="solutions" className="py-10 space-y-8 text-left bg-gradient-to-br from-emerald-950/20 via-bg-card to-emerald-950/10 border border-brand-primary/30 rounded-3xl p-6 sm:p-10 shadow-lg" aria-label="La Sérénité Retrouvée avec Print_Flow">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -334,7 +341,7 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
 
-                {/* Overlapping Floating Badge */}
+                {/* Overlapping Floating Badge in French */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-border-subtle rounded-2xl p-4 shadow-xl flex items-center gap-3">
                   <div className="flex -space-x-2 overflow-hidden">
                     <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="/Temoignage.jpg" alt="" />
@@ -342,7 +349,7 @@ export default function LandingPage() {
                     <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="/Temoignage3.jpg" alt="" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-text-main">Rejoignez 50+ imprimeries</p>
+                    <p className="text-xs font-bold text-text-main">Rejoignez 50+ imprimeries actives</p>
                     <p className="text-[10px] text-text-secondary">Traçabilité 100% garantie</p>
                   </div>
                 </div>
@@ -404,7 +411,7 @@ export default function LandingPage() {
 
         </section>
 
-        {/* SECTION 3: DÉFIS VS SOLUTIONS (SOFT GRAY / DARK CARD CONTAINER) */}
+        {/* SECTION 3: DÉFIS VS SOLUTIONS (CONTAINER GRIS DOUX HARMONIEUX) */}
         <section id="defis-solution" className="py-10 space-y-8 text-left bg-slate-100/70 dark:bg-slate-900/60 border border-border-subtle rounded-3xl p-6 sm:p-10 shadow-xs" aria-label="Défis et Solutions Imprimerie">
           
           <div className="text-center space-y-2 max-w-2xl mx-auto">
