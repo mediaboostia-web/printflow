@@ -204,7 +204,7 @@ export default function Header() {
           onClick={() => {
             if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
               logout();
-              router.push('/login');
+              router.push('/');
             }
           }}
           className="sm:hidden p-1.5 rounded-xl text-rose-500 hover:bg-rose-500/10 border border-border-subtle bg-bg-card transition shadow-sm"
@@ -314,7 +314,7 @@ export default function Header() {
                   onClick={() => {
                     setIsProfileOpen(false);
                     logout();
-                    router.push('/login');
+                    router.push('/');
                   }}
                   className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-text-main hover:bg-slate-100 dark:hover:bg-slate-800/40 transition border-t border-border-subtle/40 mt-1.5 pt-2"
                 >

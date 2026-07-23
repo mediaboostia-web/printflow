@@ -161,7 +161,7 @@ export default function SuperAdminHomePage() {
 
   const handleLogout = () => {
     logout();
-    router.push('/super-admin/login');
+    router.push('/');
   };
 
   // Compute stats

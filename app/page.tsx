@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -55,6 +55,29 @@ export default function LandingPage() {
   // Accordion state for FAQ
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
+  // Smart Hide/Show Sticky Header State
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 60) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling DOWN -> hide header
+        setIsHeaderVisible(false);
+      } else {
+        // Scrolling UP -> show header
+        setIsHeaderVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   const testimonials = [
     {
       name: "Amadou Diallo",
@@ -94,7 +117,7 @@ export default function LandingPage() {
     },
     {
       q: "Puis-je passer à la Formule Pro plus tard ?",
-      a: "Oui, à tout moment depuis votre tableau de bord. La Formule Pro débloque les utilisateurs illimités, la boutique en ligne et l'historique d'audit."
+      a: "Oui, à tout moment depuis votre tableau de bord. La Formule Pro débloque les collaborateurs illimités, la boutique en ligne et l'historique d'audit."
     },
     {
       q: "Mes données d'imprimerie sont-elles sécurisées ?",
@@ -126,22 +149,24 @@ export default function LandingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSoftware) }}
       />
 
-      {/* STICKY TOP NAVBAR (DESKTOP & MOBILE STICKY WITH BACKDROP BLUR) */}
-      <div className="sticky top-3 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* SMART STICKY HEADER NAVBAR (DISPARAÎT AU SCROLL BAS / RÉAPPARAÎT AU SCROLL HAUT) */}
+      <div className={`sticky top-3 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 transform ${
+        isHeaderVisible ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0 pointer-events-none'
+      }`}>
         <header className="bg-bg-card/90 dark:bg-[#090D16]/90 backdrop-blur-md border border-border-subtle rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-md transition duration-300">
-          <div className="flex items-center gap-3">
+          <a href="#hero" className="flex items-center gap-3">
             <img src="/Favicon_PrintFlow.png" alt="Logo Print_Flow" className="w-8 h-8 object-contain rounded-xl shrink-0" />
             <span className="text-xl font-extrabold tracking-tight text-text-main font-sans">
               Print<span className="text-brand-primary">_Flow</span>
             </span>
-          </div>
+          </a>
 
+          {/* 5 CLEAN NAV LINKS (ACCUEIL, FONCTIONNALITÉS, TARIFS, TÉMOIGNAGES, FAQ) */}
           <nav className="hidden md:flex items-center gap-8 text-xs font-bold text-text-secondary font-sans" aria-label="Navigation principale">
-            <a href="#comment-ca-marche" className="hover:text-brand-primary transition">Comment ça marche</a>
-            <a href="#solutions" className="hover:text-brand-primary transition">Sérénité Atelier</a>
-            <a href="#defis-solution" className="hover:text-brand-primary transition">Défis & Solutions</a>
-            <a href="#temoignages" className="hover:text-brand-primary transition">Témoignages</a>
+            <a href="#hero" className="hover:text-brand-primary transition">Accueil</a>
+            <a href="#defis-solution" className="hover:text-brand-primary transition">Fonctionnalités</a>
             <a href="#tarifs" className="hover:text-brand-primary transition">Tarifs</a>
+            <a href="#temoignages" className="hover:text-brand-primary transition">Témoignages</a>
             <a href="#faq" className="hover:text-brand-primary transition">FAQ</a>
           </nav>
 
@@ -175,10 +200,10 @@ export default function LandingPage() {
       </div>
 
       {/* FULL WIDTH HERO WRAPPER (COUVRE TOUTE LA LARGEUR DE L'ÉCRAN HAUTEUR COMPLÈTE) */}
-      <div className="w-full bg-gradient-to-b from-emerald-100/60 via-emerald-50/20 to-transparent dark:from-emerald-950/40 dark:via-slate-900/30 dark:to-transparent border-b border-border-subtle/50 pb-16 pt-4 -mt-16">
+      <div id="hero" className="w-full bg-gradient-to-b from-emerald-100/60 via-emerald-50/20 to-transparent dark:from-emerald-950/40 dark:via-slate-900/30 dark:to-transparent border-b border-border-subtle/50 pb-16 pt-4 -mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-20">
 
-          {/* HERO SECTION */}
+          {/* HERO SECTION (A - ATTENTION) */}
           <section className="pt-4 pb-4 text-center space-y-8" aria-label="Présentation Print_Flow">
             
             {/* Centered Top Badge */}
@@ -187,7 +212,7 @@ export default function LandingPage() {
               <span>Essai gratuit de 7 jours pour votre imprimerie</span>
             </div>
 
-            {/* Centered H1 Headline */}
+            {/* Centered H1 Headline (Verbe d'action coloré + Trait de soulignement courbé) */}
             <div className="max-w-3xl mx-auto space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-main tracking-tight leading-[1.18] font-sans">
                 <span className="text-brand-primary">Centralisez</span> Devis, BAT & Production en{' '}
@@ -200,11 +225,11 @@ export default function LandingPage() {
               </h1>
 
               <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto font-sans pt-2">
-                Le logiciel conçu spécifiquement pour les imprimeries et ateliers de reprographie en Afrique francophone.
+                Le logiciel de gestion pensé pour simplifier le quotidien des imprimeurs : zéro devis égaré, acomptes sécurisés et suivi de fabrication en temps réel.
               </p>
             </div>
 
-            {/* Single Primary Action CTA */}
+            {/* Single Primary Action CTA (A - ACTION) */}
             <div className="flex items-center justify-center pt-2">
               <Link
                 href="/login"
@@ -242,7 +267,7 @@ export default function LandingPage() {
       {/* Main Inner Container for remaining sections */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
 
-        {/* SECTION 1: COMMENT ÇA MARCHE (RÉTRACTATION DU DEGRADÉ SOMBRE -> STYLE CLAIR HARMONISÉ EN FRANÇAIS) */}
+        {/* SECTION 1: COMMENT ÇA MARCHE (4 ÉTAPES CLAIRES) */}
         <section id="comment-ca-marche" className="py-10 space-y-8 text-center bg-bg-card border border-border-subtle rounded-3xl p-6 sm:p-12 shadow-xs" aria-label="Comment ça marche">
           
           <div className="space-y-2 max-w-2xl mx-auto">
@@ -250,14 +275,14 @@ export default function LandingPage() {
               Comment ça marche
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-text-main font-sans">
-              De l'Inscription à la Rentabilité — Simplifié.
+              De l'Inscription à la Rentabilité — En 4 Étapes Simples.
             </h2>
             <p className="text-xs text-text-secondary max-w-lg mx-auto">
-              Notre processus fluide vous aide à inscrire votre atelier, suivre la fabrication et encaisser vos factures sans aucune complexité.
+              Un processus intuitif conçu pour mettre votre atelier en ordre de marche sans perdre une minute.
             </p>
           </div>
 
-          {/* 4 Cards Layout matching Screenshot 1 (Light mode cards) */}
+          {/* 4 Cards Layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch text-left pt-4">
             
             {/* Card 01 */}
@@ -270,13 +295,13 @@ export default function LandingPage() {
                 <div className="space-y-1.5">
                   <h3 className="text-base font-bold text-text-main font-sans">Inscription en 3 clics</h3>
                   <p className="text-xs text-text-secondary leading-relaxed font-sans">
-                    Créez votre compte en quelques secondes, accédez à votre espace d'impression sans carte bancaire.
+                    Créez votre compte en quelques secondes et accédez directement à votre atelier sans carte bancaire.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Card 02 (Featured Card - Middle highlighted card with header image) */}
+            {/* Card 02 */}
             <div className="bg-bg-card border-2 border-brand-primary rounded-3xl p-5 flex flex-col justify-between space-y-4 shadow-md hover:scale-[1.03] transition duration-300 hover:shadow-2xl cursor-pointer">
               <div className="space-y-3">
                 <div className="rounded-2xl overflow-hidden border border-border-subtle aspect-16/9 bg-slate-100">
@@ -292,7 +317,7 @@ export default function LandingPage() {
                 <div className="space-y-1.5">
                   <h3 className="text-base font-bold text-text-main font-sans">Créez & Partagez la Boutique</h3>
                   <p className="text-xs text-text-secondary leading-relaxed font-sans">
-                    Configurez vos tarifs papiers et partagez le lien de votre vitrine web avec vos clients.
+                    Saisissez vos produits et partagez votre catalogue en ligne pour recevoir les demandes directes.
                   </p>
                 </div>
               </div>
@@ -308,7 +333,7 @@ export default function LandingPage() {
                 <div className="space-y-1.5">
                   <h3 className="text-base font-bold text-text-main font-sans">Gérez & Suivez le Flux</h3>
                   <p className="text-xs text-text-secondary leading-relaxed font-sans">
-                    Traitez vos demandes reçues en direct et suivez chaque dossier étape par étape (Calage, Impression, Façonnage).
+                    Suivez le calage, la presse et le façonnage en temps réel sans courir après les dossiers.
                   </p>
                 </div>
               </div>
@@ -324,7 +349,7 @@ export default function LandingPage() {
                 <div className="space-y-1.5">
                   <h3 className="text-base font-bold text-text-main font-sans">Facturez & Gérez vos Revenus</h3>
                   <p className="text-xs text-text-secondary leading-relaxed font-sans">
-                    Enregistrez les acomptes, éditez les factures finales et suivez le Solde Dû en toute sérénité.
+                    Déduisez l'acompte automatiquement et encaissez le solde dû lors de la livraison sans litige.
                   </p>
                 </div>
               </div>
@@ -334,7 +359,7 @@ export default function LandingPage() {
 
         </section>
 
-        {/* SECTION 2: SÉRÉNITÉ RETROUVÉE AVEC PRINTFLOW (100% FRANÇAIS) */}
+        {/* SECTION 2: SÉRÉNITÉ RETROUVÉE (I - INTÉRÊT & DÉSIR) */}
         <section id="solutions" className="py-10 space-y-8 text-left bg-gradient-to-br from-emerald-950/20 via-bg-card to-emerald-950/10 border border-brand-primary/30 rounded-3xl p-6 sm:p-10 shadow-lg" aria-label="La Sérénité Retrouvée avec Print_Flow">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -349,7 +374,7 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
 
-                {/* Overlapping Floating Badge in French */}
+                {/* Overlapping Floating Badge */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-border-subtle rounded-2xl p-4 shadow-xl flex items-center gap-3">
                   <div className="flex -space-x-2 overflow-hidden">
                     <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="/Temoignage.jpg" alt="" />
@@ -374,7 +399,7 @@ export default function LandingPage() {
                   La Sérénité Retrouvée dans votre Imprimerie
                 </h2>
                 <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans">
-                  Print_Flow n'est pas seulement un outil de facturation, c'est l'espace où la gestion de votre atelier prend tout son sens : traçabilité complète du devis à la livraison, zéro oubli d'acompte et visibilité totale pour vos clients.
+                  Print_Flow transforme le désordre des fiches volantes en un flux clair : chaque devis est tracé, le Bon à Tirer est validé avant impression et chaque centime d'acompte est déduit sur la facture finale.
                 </p>
               </div>
 
@@ -419,16 +444,16 @@ export default function LandingPage() {
 
         </section>
 
-        {/* SECTION 3: DÉFIS VS SOLUTIONS (CONTAINER GRIS DOUX HARMONIEUX) */}
+        {/* SECTION 3: DÉFIS VS SOLUTIONS (FONCTIONNALITÉS) */}
         <section id="defis-solution" className="py-10 space-y-8 text-left bg-slate-100/70 dark:bg-slate-900/60 border border-border-subtle rounded-3xl p-6 sm:p-10 shadow-xs" aria-label="Défis et Solutions Imprimerie">
           
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <span className="text-xs font-extrabold uppercase tracking-wider text-brand-primary font-sans">Résolution de Problèmes</span>
             <h2 className="text-2xl sm:text-4xl font-black text-text-main font-sans">
-              Comment les Fonctionnalités Print_Flow Résolvent vos Défis.
+              Des Solutions Concrètes pour Chaque Défi de votre Atelier.
             </h2>
             <p className="text-xs text-text-secondary">
-              Chaque défi de votre atelier est directement éliminé par une fonctionnalité dédiée.
+              Découvrez comment nos fonctionnalités éliminent directement les goulots d'étranglement.
             </p>
           </div>
 
@@ -518,7 +543,7 @@ export default function LandingPage() {
 
         </section>
 
-        {/* SECTION 4: TÉMOIGNAGES (SOMBRE ET ACCUEILLANT) */}
+        {/* SECTION 4: TÉMOIGNAGES (D - DÉSIR) */}
         <section id="temoignages" className="py-10 space-y-8 text-center bg-slate-900 text-white border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl" aria-label="Témoignages Clients">
           
           <div className="space-y-2 max-w-2xl mx-auto">
@@ -588,7 +613,7 @@ export default function LandingPage() {
 
         </section>
 
-        {/* SECTION 5: TARIFS (PLACÉE MAINTENANT APRÈS LES TÉMOIGNAGES) */}
+        {/* SECTION 5: TARIFS (PLACÉE APRÈS LES TÉMOIGNAGES) */}
         <section id="tarifs" className="py-10 space-y-8 text-center bg-slate-100/60 dark:bg-slate-900/40 border border-border-subtle rounded-3xl p-6 sm:p-10 shadow-xs" aria-label="Tarifs et Abonnements">
           
           <div className="space-y-2 max-w-2xl mx-auto">
