@@ -126,55 +126,57 @@ export default function LandingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSoftware) }}
       />
 
-      {/* FULL WIDTH HERO + NAVBAR WRAPPER (COUVRE TOUTE LA LARGEUR DE L'ÉCRAN HAUTEUR COMPLÈTE) */}
-      <div className="w-full bg-gradient-to-b from-emerald-100/60 via-emerald-50/20 to-transparent dark:from-emerald-950/40 dark:via-slate-900/30 dark:to-transparent border-b border-border-subtle/50 pb-16 pt-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
-          {/* Top Header Navbar Card */}
-          <header className="bg-bg-card border border-border-subtle rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-xs sticky top-4 z-50">
-            <div className="flex items-center gap-3">
-              <img src="/Favicon_PrintFlow.png" alt="Logo Print_Flow" className="w-8 h-8 object-contain rounded-xl shrink-0" />
-              <span className="text-xl font-extrabold tracking-tight text-text-main font-sans">
-                Print<span className="text-brand-primary">_Flow</span>
-              </span>
-            </div>
+      {/* STICKY TOP NAVBAR (DESKTOP & MOBILE STICKY WITH BACKDROP BLUR) */}
+      <div className="sticky top-3 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="bg-bg-card/90 dark:bg-[#090D16]/90 backdrop-blur-md border border-border-subtle rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-md transition duration-300">
+          <div className="flex items-center gap-3">
+            <img src="/Favicon_PrintFlow.png" alt="Logo Print_Flow" className="w-8 h-8 object-contain rounded-xl shrink-0" />
+            <span className="text-xl font-extrabold tracking-tight text-text-main font-sans">
+              Print<span className="text-brand-primary">_Flow</span>
+            </span>
+          </div>
 
-            <nav className="hidden md:flex items-center gap-8 text-xs font-bold text-text-secondary font-sans" aria-label="Navigation principale">
-              <a href="#comment-ca-marche" className="hover:text-brand-primary transition">Comment ça marche</a>
-              <a href="#solutions" className="hover:text-brand-primary transition">Sérénité Atelier</a>
-              <a href="#defis-solution" className="hover:text-brand-primary transition">Défis & Solutions</a>
-              <a href="#temoignages" className="hover:text-brand-primary transition">Témoignages</a>
-              <a href="#tarifs" className="hover:text-brand-primary transition">Tarifs</a>
-              <a href="#faq" className="hover:text-brand-primary transition">FAQ</a>
-            </nav>
+          <nav className="hidden md:flex items-center gap-8 text-xs font-bold text-text-secondary font-sans" aria-label="Navigation principale">
+            <a href="#comment-ca-marche" className="hover:text-brand-primary transition">Comment ça marche</a>
+            <a href="#solutions" className="hover:text-brand-primary transition">Sérénité Atelier</a>
+            <a href="#defis-solution" className="hover:text-brand-primary transition">Défis & Solutions</a>
+            <a href="#temoignages" className="hover:text-brand-primary transition">Témoignages</a>
+            <a href="#tarifs" className="hover:text-brand-primary transition">Tarifs</a>
+            <a href="#faq" className="hover:text-brand-primary transition">FAQ</a>
+          </nav>
 
-            <div className="flex items-center gap-3">
-              {isAuthenticated ? (
+          <div className="flex items-center gap-3">
+            {isAuthenticated ? (
+              <Link
+                href="/dashboard"
+                className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-xl transition shadow-xs flex items-center gap-2 font-sans"
+              >
+                <span>Mon Espace</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            ) : (
+              <>
                 <Link
-                  href="/dashboard"
-                  className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-xl transition shadow-xs flex items-center gap-2 font-sans"
+                  href="/login"
+                  className="px-4 py-2 text-xs font-bold text-text-main hover:text-brand-primary transition font-sans"
                 >
-                  <span>Mon Espace</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  Se connecter
                 </Link>
-              ) : (
-                <>
-                  <Link
-                    href="/login"
-                    className="px-4 py-2 text-xs font-bold text-text-main hover:text-brand-primary transition font-sans"
-                  >
-                    Se connecter
-                  </Link>
-                  <Link
-                    href="/login"
-                    className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-full transition shadow-xs font-sans hover:scale-[1.03]"
-                  >
-                    Démarrer l'essai
-                  </Link>
-                </>
-              )}
-            </div>
-          </header>
+                <Link
+                  href="/login"
+                  className="px-5 py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-full transition shadow-xs font-sans hover:scale-[1.03]"
+                >
+                  Démarrer l'essai
+                </Link>
+              </>
+            )}
+          </div>
+        </header>
+      </div>
+
+      {/* FULL WIDTH HERO WRAPPER (COUVRE TOUTE LA LARGEUR DE L'ÉCRAN HAUTEUR COMPLÈTE) */}
+      <div className="w-full bg-gradient-to-b from-emerald-100/60 via-emerald-50/20 to-transparent dark:from-emerald-950/40 dark:via-slate-900/30 dark:to-transparent border-b border-border-subtle/50 pb-16 pt-4 -mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-20">
 
           {/* HERO SECTION */}
           <section className="pt-4 pb-4 text-center space-y-8" aria-label="Présentation Print_Flow">
@@ -187,11 +189,17 @@ export default function LandingPage() {
 
             {/* Centered H1 Headline */}
             <div className="max-w-3xl mx-auto space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-main tracking-tight leading-[1.1] font-sans">
-                Centralisez Devis, BAT & Production en un Seul Endroit
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-main tracking-tight leading-[1.18] font-sans">
+                <span className="text-brand-primary">Centralisez</span> Devis, BAT & Production en{' '}
+                <span className="relative inline-block">
+                  un Seul Endroit
+                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-brand-primary" viewBox="0 0 200 20" preserveAspectRatio="none">
+                    <path d="M5 15 Q 100 3, 195 14" stroke="currentColor" strokeWidth="5" fill="none" strokeLinecap="round" />
+                  </svg>
+                </span>
               </h1>
 
-              <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto font-sans">
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto font-sans pt-2">
                 Le logiciel conçu spécifiquement pour les imprimeries et ateliers de reprographie en Afrique francophone.
               </p>
             </div>
